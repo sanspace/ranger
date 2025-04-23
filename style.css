@@ -10,6 +10,53 @@ h1, h2, h3 {
     color: #333;
 }
 
+/* CIDR legend */
+.cidr-legend-compact {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 8px 12px; /* Reduced padding */
+    margin-bottom: 20px;
+    font-size: 0.9em; /* Even smaller font size */
+    color: #495057;
+    text-align: center; /* Center title and table */
+}
+
+.cidr-legend-compact .legend-title {
+    font-weight: 500;
+    margin-right: 8px; /* Space between title and table if they wrap */
+    display: inline-block; /* Keep title on same line as table if space allows */
+    margin-bottom: 5px; /* Add some space below if it wraps */
+}
+
+.cidr-legend-compact table {
+    display: inline-block; /* Allow table to sit next to title */
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle; /* Align table nicely with title */
+}
+
+/* Remove cell borders or make very light */
+.cidr-legend-compact th,
+.cidr-legend-compact td {
+    border: none; /* Remove cell borders */
+    padding: 2px 6px; /* Adjust padding */
+    white-space: nowrap; /* Prevent wrapping within cells */
+}
+
+.cidr-legend-compact th { /* Mask row */
+    font-weight: 500;
+    font-family: monospace;
+    border-bottom: 1px solid #dee2e6; /* Separator line */
+
+}
+
+.cidr-legend-compact td { /* IP count row */
+    font-weight: normal;
+}
+
+/* Input Section */
+
 .input-section, .results-section {
     background-color: #fff;
     padding: 20px;
