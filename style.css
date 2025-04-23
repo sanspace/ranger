@@ -224,3 +224,145 @@ button#calculateBtn:hover {
     color: #555;
     margin-bottom: 15px;
 }
+
+/* Cluster Visualization */
+.cluster-viz-section {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px; /* Space below previous results */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cluster-viz-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.cluster-container {
+    border: 2px solid #6c757d; /* Dark grey border for cluster */
+    border-radius: 8px;
+    padding: 40px 20px 20px 20px; /* More padding top for label */
+    position: relative; /* For positioning the cluster label */
+    min-height: 300px; /* Give it some minimum height */
+    display: flex; /* Use flex to position node/service areas */
+    gap: 20px;
+    align-items: flex-start; /* Align areas to the top */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.cluster-label {
+    position: absolute;
+    top: -12px; /* Position label slightly overlapping the top border */
+    left: 15px;
+    background-color: #fff; /* Background to cover the border */
+    padding: 0 10px;
+    font-weight: bold;
+    color: #6c757d;
+}
+
+/* Node Area Styles */
+.node-area {
+    border: 1px dashed #007bff; /* Blue dashed border for node area */
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #e7f3ff; /* Light blue background */
+    flex: 2; /* Allow node area to take more space */
+    min-width: 250px;
+}
+
+.area-label {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 10px;
+    display: block; /* Make it block for margin */
+}
+.area-label small {
+    font-weight: normal;
+    color: #777;
+}
+
+.node-box {
+    border: 2px solid #007bff; /* Solid blue border for the node */
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px; /* Space between node boxes if showing more */
+    min-height: 100px; /* Ensure node box has some height */
+    position: relative;
+}
+.element-label {
+    font-weight: bold;
+    font-size: 0.85em;
+    color: #0056b3;
+}
+.node-details {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+
+/* Pod Area Styles inside Node */
+.pod-area {
+    border: 1px solid #fd7e14; /* Orange border for pod area */
+    background-color: #fff9f3; /* Light orange background */
+    border-radius: 3px;
+    padding: 8px;
+    margin-top: 5px;
+}
+.pod-icons {
+    margin-bottom: 5px;
+}
+.pod-icon {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: #fd7e14; /* Orange pod */
+    border-radius: 2px; /* Slightly rounded square */
+    margin-right: 4px;
+}
+.pods-label {
+     margin-bottom: 0; /* Reset margin */
+     font-size: 0.85em;
+}
+.pods-label small { font-size: 0.9em; }
+
+
+/* Service Area Styles */
+.service-area {
+    border: 1px dashed #6f42c1; /* Purple dashed border */
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #f4eFFF; /* Light purple background */
+    flex: 1; /* Allow service area to take less space */
+    min-width: 150px;
+}
+.service-icon-container {
+    text-align: center; /* Center icons */
+}
+.service-icon {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: #6f42c1; /* Purple service */
+    border-radius: 50%; /* Circle */
+    margin: 5px;
+}
+
+/* Faded elements to indicate 'more' */
+.faded-icon {
+    opacity: 0.4;
+}
+.faded-box {
+    border-style: dashed;
+    opacity: 0.5;
+    text-align: center;
+    padding-top: 15px;
+    min-height: 50px;
+}
+.faded-box .element-label {
+    color: #666;
+}

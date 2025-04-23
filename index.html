@@ -83,6 +83,51 @@
         </div>
     </div>
 
+    <div id="cluster-visualization" class="cluster-viz-section">
+        <h2>Cluster Structure Overview</h2>
+        <div class="cluster-container">
+            <span class="cluster-label">GKE Cluster</span>
+
+            <div class="node-area">
+                <div class="area-label">
+                    Nodes (Max: <span id="struct-max-nodes">N/A</span>)<br>
+                    <small><em>(From Node CIDR: /<span id="struct-node-mask">?</span>)</em></small>
+                </div>
+                <div class="node-box">
+                    <span class="element-label">Example Node</span>
+                    <div class="node-details">
+                         <small>Pod Range: /<span id="struct-node-pod-mask">?</span></small>
+                    </div>
+                    <div class="pod-area">
+                        <div class="pod-icons">
+                            <span class="pod-icon"></span>
+                            <span class="pod-icon"></span>
+                            <span class="pod-icon"></span>
+                            <span class="pod-icon faded-icon"></span> </div>
+                         <div class="area-label pods-label">
+                            Pods (Max: <span id="struct-max-pods-node">N/A</span> / Node)<br>
+                             <small><em>(From Pod CIDR: /<span id="struct-pod-mask">?</span>)</em></small>
+                         </div>
+                    </div>
+                </div>
+                 <div class="node-box faded-box"> <span class="element-label">...more nodes</span>
+                 </div>
+            </div>
+
+            <div class="service-area">
+                 <div class="area-label">
+                    Services (Max: <span id="struct-max-services">N/A</span>)<br>
+                     <small><em>(From Service CIDR: /<span id="struct-svc-mask">?</span>)</em></small>
+                 </div>
+                 <div class="service-icon-container">
+                     <span class="service-icon"></span>
+                     <span class="service-icon"></span>
+                     <span class="service-icon faded-icon"></span>
+                 </div>
+            </div>
+
+        </div>
+    </div> 
     <script src="script.js"></script>
 </body>
 </html>

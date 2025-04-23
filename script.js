@@ -183,6 +183,18 @@ function calculateCIDRs() {
         'Total Service CIDR IPs'
     );
 
+    // --- Update Cluster Structure Visualization ---
+    document.getElementById('struct-max-nodes').textContent = effectiveMaxNodes.toLocaleString();
+    document.getElementById('struct-node-mask').textContent = nodeMask;
+
+    document.getElementById('struct-node-pod-mask').textContent = nodePodReq.maskSize; // From getRequiredNodePodRange result
+
+    document.getElementById('struct-max-pods-node').textContent = maxPodsPerNode;
+    document.getElementById('struct-pod-mask').textContent = podMask;
+
+    document.getElementById('struct-max-services').textContent = maxServices.toLocaleString();
+    document.getElementById('struct-svc-mask').textContent = serviceMask;
+
 }
 
 // --- Event Listener ---
