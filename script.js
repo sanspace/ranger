@@ -143,6 +143,11 @@ function calculateCIDRs() {
     const usableServiceIPs = getUsableIPs(serviceMask);
     const maxServices = usableServiceIPs;
 
+    // Determine unused counts (use BigInt for safety)
+    const unusedNodeIPs = maxNodesFromNodeCIDR - effectiveMaxNodes;
+    const totalPodIPsAllocated = effectiveMaxNodes * ipsAllocatedPerNode;
+    const unusedPodIPs = totalPodIPs - totalPodIPsAllocated;
+
     // --- Display Results ---
     const summaryDiv = document.getElementById('summary');
     summaryDiv.innerHTML = `
@@ -184,16 +189,61 @@ function calculateCIDRs() {
     );
 
     // --- Update Cluster Structure Visualization ---
+    // 1. Update basic numbers
     document.getElementById('struct-max-nodes').textContent = effectiveMaxNodes.toLocaleString();
     document.getElementById('struct-node-mask').textContent = nodeMask;
-
-    document.getElementById('struct-node-pod-mask').textContent = nodePodReq.maskSize; // From getRequiredNodePodRange result
-
+    document.getElementById('struct-node-pod-mask').textContent = nodePodReq.maskSize;
     document.getElementById('struct-max-pods-node').textContent = maxPodsPerNode;
     document.getElementById('struct-pod-mask').textContent = podMask;
-
     document.getElementById('struct-max-services').textContent = maxServices.toLocaleString();
     document.getElementById('struct-svc-mask').textContent = serviceMask;
+
+    // 2. Update visual indicators (borders and text)
+    const nodeAreaEl = document.getElementById('struct-node-area');
+    const podAreaEl = document.getElementById('struct-pod-area');
+    const nodeUnusedInfoEl = document.getElementById('struct-node-unused-info');
+    const podUnusedInfoEl = document.getElementById('struct-pod-unused-info');
+
+    // Reset classes and text first
+    nodeAreaEl.classList.remove('has-room', 'is-limited');
+    podAreaEl.classList.remove('has-room', 'is-limited'); // Pod area shows room if Node CIDR limits
+    nodeUnusedInfoEl.textContent = '';
+    nodeUnusedInfoEl.classList.remove('has-room-text');
+    podUnusedInfoEl.textContent = '';
+    podUnusedInfoEl.classList.remove('has-room-text');
+
+
+    // Apply new classes and text based on the limiting factor
+    if (maxNodesFromPodCIDR < maxNodesFromNodeCIDR) {
+        // Pod CIDR is limiting, so Node CIDR has room
+        nodeAreaEl.classList.add('has-room');
+        podAreaEl.classList.add('is-limited'); // Pod allocation limits node count
+        if (unusedNodeIPs > 0n) {
+            nodeUnusedInfoEl.textContent = `(${unusedNodeIPs.toLocaleString()} Node IPs unused)`;
+            nodeUnusedInfoEl.classList.add('has-room-text');
+        }
+    } else if (maxNodesFromNodeCIDR < maxNodesFromPodCIDR) {
+        // Node CIDR is limiting, so Pod CIDR has room (or isn't the bottleneck)
+        nodeAreaEl.classList.add('is-limited');
+        podAreaEl.classList.add('has-room'); // Pod allocation has capacity relative to nodes
+         // Check if there are actually unused Pod IPs in the total pool
+        if (unusedPodIPs > 0n) {
+             // Use a threshold? For now, just check > 0
+             const threshold = ipsAllocatedPerNode; // e.g., At least one node's worth of IPs free
+             if (unusedPodIPs > threshold) {
+                 podUnusedInfoEl.textContent = `(~${unusedPodIPs.toLocaleString()} Pod IPs unused in pool)`;
+                 podUnusedInfoEl.classList.add('has-room-text');
+             } else if (unusedPodIPs > 0n) {
+                 podUnusedInfoEl.textContent = `(${unusedPodIPs.toLocaleString()} Pod IPs unused in pool)`;
+                  podUnusedInfoEl.classList.add('has-room-text');
+             }
+        }
+    } else {
+        // Both limits are equal (or calculation resulted in equality)
+        // Treat both as potentially limiting or fully utilized - use default borders or a specific style
+        nodeAreaEl.classList.add('is-limited'); // Or some 'balanced' class
+        podAreaEl.classList.add('is-limited');   // Or some 'balanced' class
+    }
 
 }
 

@@ -143,7 +143,7 @@ button#calculateBtn:hover {
     /* Takes up the second grid column */
     display: flex; /* Use flexbox to stack allocation groups vertically */
     flex-direction: column;
-    gap: 20px; /* Space between the allocation groups */
+    gap: 1px; /* Space between the allocation groups */
 }
 
 /* Optional: Style for the allocation groups in the right column */
@@ -270,6 +270,7 @@ button#calculateBtn:hover {
     background-color: #e7f3ff; /* Light blue background */
     flex: 2; /* Allow node area to take more space */
     min-width: 250px;
+    transition: border-color 0.5s ease; /* Smooth color transition */
 }
 
 .area-label {
@@ -292,6 +293,7 @@ button#calculateBtn:hover {
     margin-bottom: 10px; /* Space between node boxes if showing more */
     min-height: 100px; /* Ensure node box has some height */
     position: relative;
+    transition: border-color 0.5s ease; /* For color change effect */
 }
 .element-label {
     font-weight: bold;
@@ -312,6 +314,7 @@ button#calculateBtn:hover {
     border-radius: 3px;
     padding: 8px;
     margin-top: 5px;
+    transition: border-color 0.5s ease;
 }
 .pod-icons {
     margin-bottom: 5px;
@@ -357,12 +360,47 @@ button#calculateBtn:hover {
     opacity: 0.4;
 }
 .faded-box {
-    border-style: dashed;
-    opacity: 0.5;
+    border-style: dashed; /* Use dashed border for faded look */
+    opacity: 0.5;        /* Make it semi-transparent */
     text-align: center;
-    padding-top: 15px;
-    min-height: 50px;
+    padding-top: 15px;   /* Adjust padding as needed */
+    min-height: 50px;    /* Give it some minimum height */
+    margin-top: 10px;    /* Add margin if needed */
+    /* Inherits .node-box border-color, padding etc. unless overridden */
 }
+
 .faded-box .element-label {
-    color: #666;
+    color: #666; /* Lighter color for the text */
+    font-weight: normal; /* Less emphasis */
+}
+
+/* Styles when a resource has unused capacity */
+.has-room {
+    border-width: 2px; /* Make border slightly thicker */
+    border-color: #28a745 !important; /* Green border - use !important if needed to override default */
+}
+.has-room > .area-label { /* Style label within the area */
+    /* color: #19692c; */ /* Optional: Change label color */
+}
+
+/* Styles when a resource is the limiting factor */
+.is-limited {
+    border-width: 2px;
+    border-color: #dc3545 !important; /* Red border */
+}
+.is-limited > .area-label {
+   /* color: #a71d2a; */ /* Optional: Change label color */
+}
+
+
+/* Style for the small text indicating unused IPs */
+.unused-info {
+    display: block; /* Put it on its own line */
+    font-size: 0.8em;
+    font-style: italic;
+    color: #555;
+    margin-top: 4px;
+}
+.unused-info.has-room-text { /* Style when showing room */
+    color: #19692c; /* Dark green text */
 }

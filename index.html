@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GKE CIDR Calculator</title>
+    <title>🧮 GKE CIDR Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>GKE CIDR Calculator</h1>
+    <h1>🧮 GKE CIDR Calculator</h1>
     <p>Plan your GKE cluster IP ranges based on target pods per node.</p>
     <p><i>Assumes VPC-native cluster & GKE Flexible Pod CIDR allocation.</i></p>
 
@@ -43,7 +43,7 @@
     <div class="results-section" id="results">
 
         <div class="results-left-column">
-            <h2>Results</h2>
+            <h2>📝 Results</h2>
             <div id="summary">
                 </div>
         </div>
@@ -51,7 +51,7 @@
         <div class="results-right-column">
 
             <div class="allocation-group">
-                <h3>Node IP Allocation</h3>
+                <h3>🖥️ Node IP Allocation</h3>
                 <div id="nodeVizContainer" class="viz-container">
                     <div id="nodeVizBar" class="viz-bar">
                         <span id="nodeVizText" class="viz-text"></span>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="allocation-group">
-                <h3>Pod IP Allocation</h3>
+                <h3>🫛 Pod IP Allocation</h3>
                 <div id="podVizContainer" class="viz-container">
                     <div id="podVizBar" class="viz-bar">
                         <span id="podVizText" class="viz-text"></span>
@@ -71,7 +71,7 @@
             </div>
 
             <div class="allocation-group">
-                <h3>Service IP Allocation</h3>
+                <h3>🔗 Service IP Allocation</h3>
                 <div id="serviceVizContainer" class="viz-container">
                      <div id="serviceVizBar" class="viz-bar">
                         <span id="serviceVizText" class="viz-text"></span>
@@ -84,34 +84,40 @@
     </div>
 
     <div id="cluster-visualization" class="cluster-viz-section">
-        <h2>Cluster Structure Overview</h2>
+        <h2>⛓️ Cluster Structure Overview</h2>
         <div class="cluster-container">
             <span class="cluster-label">GKE Cluster</span>
 
-            <div class="node-area">
+            <div class="node-area" id="struct-node-area">
                 <div class="area-label">
-                    Nodes (Max: <span id="struct-max-nodes">N/A</span>)<br>
+                    Nodes (Max: <span id="struct-max-nodes">N/A</span>)
                     <small><em>(From Node CIDR: /<span id="struct-node-mask">?</span>)</em></small>
+                    <span class="unused-info" id="struct-node-unused-info"></span>
                 </div>
-                <div class="node-box">
+                <div class="node-box" id="struct-node-box">
                     <span class="element-label">Example Node</span>
+
                     <div class="node-details">
                          <small>Pod Range: /<span id="struct-node-pod-mask">?</span></small>
                     </div>
-                    <div class="pod-area">
+
+                    <div class="pod-area" id="struct-pod-area">
                         <div class="pod-icons">
                             <span class="pod-icon"></span>
                             <span class="pod-icon"></span>
                             <span class="pod-icon"></span>
-                            <span class="pod-icon faded-icon"></span> </div>
+                            <span class="pod-icon faded-icon"></span>
+                        </div>
                          <div class="area-label pods-label">
-                            Pods (Max: <span id="struct-max-pods-node">N/A</span> / Node)<br>
+                            Pods (Max: <span id="struct-max-pods-node">N/A</span> / Node)
                              <small><em>(From Pod CIDR: /<span id="struct-pod-mask">?</span>)</em></small>
-                         </div>
+                            <span class="unused-info" id="struct-pod-unused-info"></span>
+                        </div>
                     </div>
                 </div>
-                 <div class="node-box faded-box"> <span class="element-label">...more nodes</span>
-                 </div>
+                <div class="node-box faded-box">
+                    <span class="element-label">...more nodes</span>
+                </div>
             </div>
 
             <div class="service-area">
