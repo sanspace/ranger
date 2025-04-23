@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKE CIDR Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>GKE CIDR Calculator</h1>
+    <p>Plan your GKE cluster IP ranges based on target pods per node.</p>
+    <p><i>Assumes VPC-native cluster & GKE Flexible Pod CIDR allocation.</i></p>
+
+    <div class="input-section">
+
+        <div class="input-group">
+            <label for="maxPodsInput">Target Max Pods per Node:</label>
+            <input type="number" id="maxPodsInput" min="1" max="256" value="32">
+        </div>
+
+        <div class="input-group">
+            <label for="podMask">Cluster Pod CIDR Mask (/):</label>
+            <input type="number" id="podMask" min="8" max="28" value="20">
+        </div>
+
+        <div class="input-group">
+            <label for="nodeMask">Cluster Node CIDR Mask (/):</label>
+            <input type="number" id="nodeMask" min="8" max="29" value="22">
+        </div>
+
+        <div class="input-group">
+            <label for="serviceMask">Cluster Service CIDR Mask (/):</label>
+            <input type="number" id="serviceMask" min="8" max="27" value="24">
+        </div>
+
+        <div class="input-group button-container">
+             <button id="calculateBtn">Calculate</button>
+        </div>
+
+    </div>
+
+    <div class="results-section" id="results">
+
+        <div class="results-left-column">
+            <h2>Results</h2>
+            <div id="summary">
+                </div>
+        </div>
+
+        <div class="results-right-column">
+
+            <div class="allocation-group">
+                <h3>Node IP Allocation</h3>
+                <div id="nodeVizContainer" class="viz-container">
+                    <div id="nodeVizBar" class="viz-bar">
+                        <span id="nodeVizText" class="viz-text"></span>
+                    </div>
+                </div>
+                <div id="nodeVizLegend"></div>
+            </div>
+
+            <div class="allocation-group">
+                <h3>Pod IP Allocation</h3>
+                <div id="podVizContainer" class="viz-container">
+                    <div id="podVizBar" class="viz-bar">
+                        <span id="podVizText" class="viz-text"></span>
+                    </div>
+                </div>
+                <div id="podVizLegend"></div>
+            </div>
+
+            <div class="allocation-group">
+                <h3>Service IP Allocation</h3>
+                <div id="serviceVizContainer" class="viz-container">
+                     <div id="serviceVizBar" class="viz-bar">
+                        <span id="serviceVizText" class="viz-text"></span>
+                    </div>
+                </div>
+                 <div id="serviceVizLegend"></div>
+             </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

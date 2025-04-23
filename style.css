@@ -1,0 +1,226 @@
+/* Add previous styles if not already present */
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+.input-section, .results-section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+label {
+    display: inline-block;
+    width: 200px; /* Adjust as needed */
+    margin-bottom: 10px;
+}
+
+input[type="number"] {
+    padding: 8px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 60px; /* Smaller width for masks/counts */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#results h3 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+#results p {
+    margin: 5px 0 10px 0;
+}
+
+#summary strong {
+    color: #28a745; /* Green for key results */
+}
+#summary .warning {
+     color: orange;
+     font-weight: bold;
+}
+
+/* === Add or Modify these styles in style.css === */
+
+.input-section {
+    display: flex;         /* Use flexbox to arrange the groups */
+    flex-wrap: wrap;       /* Allow items to wrap onto the next line */
+    align-items: flex-end; /* Align items based on their bottom edge */
+    gap: 20px 25px;        /* Vertical and Horizontal gap between groups */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.input-group {
+    /* Structure for label + input */
+    display: flex;
+    flex-direction: column; /* Stack label above input */
+    gap: 4px; /* Small space between label and its input */
+}
+
+.input-group label {
+    /* Reset previous label styles if they conflict */
+    width: auto;           /* Remove fixed width */
+    margin-bottom: 0;      /* Remove default margin */
+    font-weight: 500;      /* Optional: Make labels slightly bolder */
+    font-size: 0.9em;      /* Optional: Adjust font size */
+    color: #333;
+    text-align: left;      /* Ensure labels align left */
+}
+
+.input-group input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 75px; /* Adjust width as needed, or use 'auto' */
+    margin: 0; /* Reset margins */
+    font-size: 1em; /* Ensure consistent font size */
+}
+
+button#calculateBtn { /* Be specific if needed */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    /* margin-top: 10px; Remove this if using align-items: flex-end */
+}
+
+button#calculateBtn:hover {
+    background-color: #0056b3;
+}
+
+#results {
+    display: grid;                     /* Use CSS Grid */
+    grid-template-columns: 1fr 1.2fr;  /* Define two columns. Right slightly wider (adjust ratio as needed) */
+    gap: 30px;                         /* Gap between columns */
+    /* Keep existing background, padding, etc. */
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Optional: Style the columns if needed, but often not necessary */
+.results-left-column {
+    /* Takes up the first grid column */
+}
+
+.results-right-column {
+    /* Takes up the second grid column */
+    display: flex; /* Use flexbox to stack allocation groups vertically */
+    flex-direction: column;
+    gap: 20px; /* Space between the allocation groups */
+}
+
+/* Optional: Style for the allocation groups in the right column */
+.allocation-group h3 {
+    margin-top: 0; /* Remove default top margin if needed */
+    margin-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    font-size: 1.1em;
+}
+
+/* --- Make sure other styles for summary, viz-container, etc., are still present --- */
+
+/* Example: Ensure summary paragraphs have reasonable margins */
+#summary p {
+    margin: 8px 0 12px 0;
+    line-height: 1.5;
+}
+#summary strong {
+    color: #28a745;
+}
+#summary .warning {
+     color: orange;
+     font-weight: bold;
+}
+
+
+/* --- Visualization Styles --- */
+.viz-container {
+    width: 100%;
+    height: 30px; /* Height of the bar */
+    background-color: #e9ecef; /* Background of the container (represents total) */
+    border-radius: 4px;
+    margin-bottom: 5px;
+    overflow: hidden; /* Hide text overflow */
+    position: relative; /* For positioning text */
+    border: 1px solid #ccc;
+}
+
+.viz-bar {
+    height: 100%;
+    background-color: #28a745; /* Color of the used portion */
+    width: 0%; /* Start with 0 width, JS will set this */
+    transition: width 0.5s ease-in-out; /* Animate the width change */
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/* Make text viewable even if bar is small */
+.viz-text {
+    position: absolute; /* Position text relative to container */
+    width: 100%; /* Span the whole container */
+    left: 0;
+    text-align: center;
+    line-height: 30px; /* Match container height */
+    color: #333; /* Dark text color */
+    text-shadow: 1px 1px 1px #fff, -1px -1px 1px #fff; /* Basic outline for readability */
+}
+
+.viz-bar .viz-text {
+    /* Style for text when it's inside the colored bar (optional override) */
+     color: white; /* White text when inside the bar */
+     text-shadow: none;
+}
+
+
+#nodeVizBar { background-color: #007bff; } /* Blue for Nodes */
+#podVizBar { background-color: #fd7e14; } /* Orange for Pods */
+#serviceVizBar { background-color: #6f42c1; } /* Purple for Services */
+
+#nodeVizLegend, #podVizLegend, #serviceVizLegend {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+}
