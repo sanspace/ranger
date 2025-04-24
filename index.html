@@ -25,7 +25,7 @@
     <p>Plan your GKE cluster IP ranges based on target pods per node. <i>Assumes VPC-native cluster & GKE Flexible Pod CIDR allocation.</i></p>
 
     <aside class="cidr-legend-compact">
-        <span class="legend-title">CIDR Reference (Mask &rarr; Total IPs):</span>
+        <span class="legend-title">📖 CIDR Reference (Mask &rarr; Total IPs):</span>
         <table>
             <thead> <tr> <th>/32</th><th>/31</th><th>/30</th><th>/29</th><th>/28</th><th>/27</th><th>/26</th><th>/25</th>
                     <th>/24</th><th>/23</th><th>/22</th><th>/21</th><th>/20</th><th>/19</th><th>/18</th><th>/17</th><th>/16</th>
@@ -62,8 +62,17 @@
         </div>
 
         <div class="input-group button-container">
-             <button id="calculateBtn">Calculate</button>
-        </div>
+            <button id="calculateBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon">
+                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                    <line x1="8" y1="6" x2="16" y2="6"></line>
+                    <line x1="16" y1="14" x2="16" y2="18"></line>
+                    <line x1="12" y1="10" x2="12" y2="18"></line>
+                    <line x1="8" y1="10" x2="8" y2="18"></line>
+                </svg>
+                Calculate
+            </button>
+       </div>
 
     </div>
 

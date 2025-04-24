@@ -98,24 +98,26 @@ label {
     margin-bottom: 10px;
 }
 
-input[type="number"] {
-    padding: 8px;
-    margin-right: 15px;
-    margin-bottom: 10px;
+.input-group input[type="number"] {
+    padding: 8px; /* Increased padding */
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 60px; /* Smaller width for masks/counts */
+    width: 80px; /* Slightly wider if needed, or adjust based on new padding */
+    margin: 0;
+    font-size: 1.05em; /* Slightly larger font */
 }
 
-button {
-    padding: 10px 20px;
+button#calculateBtn {
+    padding: 10px 20px; /* Increased padding */
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1em;
-    margin-top: 10px;
+    font-size: 1.05em; /* Slightly larger font */
+    display: inline-flex; /* For aligning icon and text */
+    align-items: center; /* For aligning icon and text */
+    gap: 8px; /* Space between icon and text */
 }
 
 button:hover {
