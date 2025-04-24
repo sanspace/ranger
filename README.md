@@ -1,8 +1,12 @@
-# GKE CIDR Calculator (Visual)
+# 🧮 GKE CIDR Calculator (Visual)
 
 A simple web-based tool to help plan and visualize IP address allocation for Google Kubernetes Engine (GKE) clusters, focusing on VPC-native networking and Flexible Pod CIDR allocation.
 
+[![deployment](https://github.com/sanspace/ranger/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/sanspace/ranger/actions/workflows/pages/pages-build-deployment)
+
 **➡️ Live Demo: [sanspace.in/ranger](https://sanspace.in/ranger)**
+
+![GKE CIDR Calculator Screenshot](img/app-screenshot.png)
 
 ## Description
 
